@@ -1,0 +1,13 @@
+build/
+bin/
+.deps/
+artifacts/
+*.o
+*.obj
+*.exe
+*.log
+*.tmp
+*.swp
+.DS_Store
+.vscode/
+.idea/
