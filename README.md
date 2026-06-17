@@ -18,7 +18,7 @@ computes a sequence, stores intermediate values, and prints values through the
 
 The hardware RTL for PUNEH lives in the upstream project:
 
-https://github.com/UTehran-NavabiLab/PUNEH-simple-processor/tree/main
+https://github.com/malisaber/PUNEH-simple-processor/tree/main
 
 ## Repository Layout
 
