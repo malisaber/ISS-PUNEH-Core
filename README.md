@@ -18,7 +18,7 @@ computes a sequence, stores intermediate values, and prints values through the
 
 The hardware RTL for PUNEH lives in the upstream project:
 
-https://github.com/malisaber/PUNEH-simple-processor/tree/main
+[UTehran-NavabiLab/PUNEH-simple-processor](https://github.com/UTehran-NavabiLab/PUNEH-simple-processor)
 
 ## Repository Layout
 
@@ -28,31 +28,56 @@ https://github.com/malisaber/PUNEH-simple-processor/tree/main
 - `docs/presentation/` - the original presentation material
 - `artifacts/` - generated logs and other non-source leftovers
 
-## Screenshots
 
-![Initial state](docs/images/initial.png)
+## Build Requirements
 
-![Main port reset](docs/images/main_port_reset.png)
+- GNU Make
+- a C++17-capable compiler such as `g++` or `clang++`
+- `git`
+- SystemC
 
-![Operating state](docs/images/operating.png)
+The Makefile supports two modes:
 
-## Guide
+- default mode uses `vcpkg` to bootstrap and install SystemC into
+  `.deps/vcpkg/installed/...`
+- external mode uses an existing SystemC install by setting `SYSTEMC_ROOT`
+
+On Windows, the Makefile uses PowerShell for its build recipes. On Unix-like
+systems it uses `/bin/sh`.
 
 ## Build
 
-The provided `Makefile` uses `vcpkg` to fetch SystemC on Windows and builds the
-simulator into `bin/puneh-iss.exe`.
+Clone the repository:
 
-```powershell
+```bash
+git clone https://github.com/malisaber/ISS-PUNEH-Core.git
+cd ISS-PUNEH-Core
+```
+
+Build with the default `vcpkg`-managed SystemC setup:
+
+```bash
 make install-deps
 make
 make run
 ```
 
-If you already have SystemC installed somewhere else, you can point the build
-at it by setting `SYSTEMC_ROOT` before invoking `make`.
+The executable is written to:
 
-## What the model does
+- `bin/puneh-iss.exe` on Windows
+- `bin/puneh-iss` on Unix-like systems
+
+If you already have SystemC installed somewhere else, point the build at it by
+setting `SYSTEMC_ROOT` before invoking `make`:
+
+```bash
+make SYSTEMC_ROOT=/path/to/systemc
+```
+
+In that mode, `make install-deps` is skipped and the build links against the
+SystemC installation you provided.
+
+## What the Model Does
 
 At a high level, the simulator:
 
@@ -69,5 +94,5 @@ values during execution so you can see the processor state evolve.
 ## Notes
 
 - Generated logs are ignored by default.
-- The repo is now arranged in a conventional source/include layout so it is
-  easier to browse on GitHub and easier to hook into CI later.
+- The repo is arranged in a conventional source/include layout so it is easier
+  to browse on GitHub and easier to hook into CI later.
