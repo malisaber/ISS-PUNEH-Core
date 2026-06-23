@@ -1,4 +1,4 @@
-# PUNEH Simple Processor ISS
+#  ISS of PUNEH, A Simple Processor
 
 ## Description
 
